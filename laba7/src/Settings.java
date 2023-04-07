@@ -22,15 +22,16 @@ public class Settings {
     public void delete(String a){
         set.remove(a);
     }
+     
     public void loadFromBinaryFile(String filename) throws FileNotFoundException, RuntimeException {
         try {
             String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(src+filename+".bin")));
-            String a = in.readLine();
-            String[] c = a.split(" ");
-            for (int i = 0;i<c.length;i++) {
-                String[] b = c[i].split(":");
+            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(src + filename + ".bin")));
+            String line = in.readLine();
+            while (line != null) {
+                String[] b = line.split(":");
                 this.put(b[0], Integer.parseInt(b[1]));
+                line = in.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -40,10 +41,11 @@ public class Settings {
         String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(src+filename+".bin")));
         for (Map.Entry<String,Integer> entry : set.entrySet() ){
-            out.write(entry.getKey()+":"+entry.getValue()+" ");
+            out.write(entry.getKey()+":"+entry.getValue()+"\n");
         }
         out.close();
     }
+     
     public void loadFromTextFile(String filename) throws FileNotFoundException, RuntimeException {
         try {
             String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
