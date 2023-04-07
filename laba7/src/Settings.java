@@ -1,17 +1,15 @@
 import java.util.HashMap;
 import java.io.*;
 import java.util.Map;
+import java.util.Objects;
 
 public class Settings {
-     private HashMap<String, Integer> set;
+     protected HashMap<String, Integer> set;
+     //искать все книги заданного автора, найти всех авторов которые выпускали книги после заданного года
 
     public Settings(){
         set=new HashMap<>();
     }
-    public boolean equals(Settings a){
-        return this.equals(a);
-    }
-    @Override
     public String toString(){
         return set.toString();
     }
@@ -19,10 +17,10 @@ public class Settings {
         set.put(a,b);
     }
     public int get(String a){
-        return this.get(a);
+        return set.get(a);
     }
     public void delete(String a){
-        this.delete(a);
+        set.remove(a);
     }
     public void loadFromBinaryFile(String filename) throws FileNotFoundException, RuntimeException {
         try {
@@ -67,5 +65,9 @@ public class Settings {
             out.write(entry.getKey()+":"+entry.getValue()+" ");
         }
         out.close();
+    }
+
+    public boolean equals(Settings a) {
+        return this.set.equals(a.set);
     }
 }

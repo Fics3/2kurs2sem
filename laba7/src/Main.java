@@ -10,6 +10,8 @@ public class Main {
         b.put("dafa",1);
         b.put("rep",34);
         b.put("daf",14);
+        b.put("df",14);
+
         b.saveToBinaryFile("output");
         a.loadFromBinaryFile("output");
         b.saveToTextFile("toutput");
@@ -24,8 +26,8 @@ public class Main {
 //        b.loadFromBinaryFile("o");
         c.saveToTextFile("cwc");
         System.out.println(c);
-
-        a.saveToTextFile("toutput");
+        System.out.println(a);
+        System.out.println(a.equals(c));
 
     }
 }
