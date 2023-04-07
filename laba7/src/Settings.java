@@ -48,11 +48,11 @@ public class Settings {
         try {
             String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(src+filename+".txt")));
-            String a = in.readLine();
-            String[] c = a.split(" ");
-            for (String s : c) {
-                String[] b = s.split(":");
+            String line = in.readLine();
+            while (line!=null) {
+                String[] b = line.split(":");
                 this.put(b[0], Integer.parseInt(b[1]));
+                line = in.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,7 +62,7 @@ public class Settings {
         String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(src+filename+".txt")));
         for (Map.Entry<String,Integer> entry : set.entrySet() ){
-            out.write(entry.getKey()+":"+entry.getValue()+" ");
+            out.write(entry.getKey()+":"+entry.getValue()+"\n");
         }
         out.close();
     }

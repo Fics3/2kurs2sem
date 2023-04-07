@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 import java.util.Objects;
 
@@ -26,6 +26,7 @@ public class Library extends Settings{
     }
     public static void main(String args[]) throws IOException {
         Library a = new Library();
+        Library b = new Library();
         a.put("Serega Pirat","TP na AMe",2022);
         a.put("Alexander Sergeevich Pushkin","Evgeniy Onegin",1823);
         a.put("AlexDarkStalker98","Devka bez ruki",2010);
@@ -35,5 +36,8 @@ public class Library extends Settings{
 //        System.out.println(a.get("AlexDarkStalker98","Pistolet, tushenka, devochki"));
 //        a.getAllAutBooks("AlexDarkStalker98");
         a.getBookAfterYear(2009);
+        a.saveToTextFile("lib");
+        b.loadFromTextFile("lib");
+        System.out.println(b);
     }
 }
