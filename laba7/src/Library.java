@@ -10,8 +10,12 @@ public class Library extends Settings{
     public void put(String aut, String book, int year){
         this.set.put(aut+"-"+book,year);
     }
-    public int get(String aut, String book){
+    public Object get(String aut, String book){
+        if(set.get(aut+"-"+book)==null) return null;
         return set.get(aut+"-"+book);
+    }
+    public void delete(String aut,String book){
+        set.remove(aut+"-"+book);
     }
     public void getAllAutBooks(String aut){
         for (Map.Entry<String,Integer> entry : set.entrySet() ){
@@ -33,11 +37,14 @@ public class Library extends Settings{
         a.put("Serega Pirat","moi bike",1999);
         a.put("AlexDarkStalker98","Pistolet, tushenka, devochki",2010);
         a.put("John Strelecky","The Cafe on the Edge of the World",2011);
+        System.out.println(a.get("Serega Pirat","mo bike"));
+//        String c =a.toString();
 //        System.out.println(a.get("AlexDarkStalker98","Pistolet, tushenka, devochki"));
 //        a.getAllAutBooks("AlexDarkStalker98");
-        a.getBookAfterYear(2009);
-        a.saveToTextFile("lib");
-        b.loadFromTextFile("lib");
-        System.out.println(b);
+//        a.getBookAfterYear(2009);
+//        a.saveToTextFile("lib");
+//        b.loadFromTextFile("lib");
+//        System.out.println(a.equals(b));
+//        System.out.println(b);
     }
 }

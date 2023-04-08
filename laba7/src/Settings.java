@@ -10,20 +10,20 @@ public class Settings {
     public Settings(){
         set=new HashMap<>();
     }
-    public String toString(){
+    public final String toString(){
         return set.toString();
     }
     public void put(String a, int b){
         set.put(a,b);
     }
-    public int get(String a){
+    public Object get(String a) {
+        if (set.get(a) == null) return null;
         return set.get(a);
     }
     public void delete(String a){
         set.remove(a);
     }
-     
-    public void loadFromBinaryFile(String filename) throws FileNotFoundException, RuntimeException {
+    public final void loadFromBinaryFile(String filename) throws FileNotFoundException, RuntimeException {
         try {
             String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(src + filename + ".bin")));
@@ -37,7 +37,7 @@ public class Settings {
             throw new RuntimeException(e);
         }
     }
-    public void saveToBinaryFile(String filename) throws IOException {
+    public final void saveToBinaryFile(String filename) throws IOException {
         String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(src+filename+".bin")));
         for (Map.Entry<String,Integer> entry : set.entrySet() ){
@@ -45,8 +45,7 @@ public class Settings {
         }
         out.close();
     }
-     
-    public void loadFromTextFile(String filename) throws FileNotFoundException, RuntimeException {
+    public final void loadFromTextFile(String filename) throws FileNotFoundException, RuntimeException {
         try {
             String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(src+filename+".txt")));
@@ -60,7 +59,7 @@ public class Settings {
             throw new RuntimeException(e);
         }
     }
-    public void saveToTextFile(String filename) throws IOException {
+    public final void saveToTextFile(String filename) throws IOException {
         String src = "C:\\Users\\zxggx\\IdeaProjects\\laba7\\src\\";
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(src+filename+".txt")));
         for (Map.Entry<String,Integer> entry : set.entrySet() ){
@@ -69,7 +68,7 @@ public class Settings {
         out.close();
     }
 
-    public boolean equals(Settings a) {
+    public final boolean equals(Settings a) {
         return this.set.equals(a.set);
     }
 }
